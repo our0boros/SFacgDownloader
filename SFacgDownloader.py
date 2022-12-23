@@ -277,6 +277,9 @@ if __name__ == '__main__':
     html=html_file.text
     # get total article
     idx_loc = re.search('class="item bold">', html, flags=0).span()
+    if len(idx_loc) < 2:
+        print("未检测到符合格式的网页请求，请确认输入的cURL是否对应某本书的某一章节")
+        exit()
     idx_loc = idx_loc[1]
     book_name = html[idx_loc:]
     idx_end = re.search('</a>', book_name, flags=0).span()
